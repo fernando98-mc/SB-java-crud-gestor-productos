@@ -1,0 +1,78 @@
+<html xmlns:th="http://www.thymeleaf.com.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Panel de productos</title>
+	<!-- Styles by MDB Botstrap -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.css" rel="stylesheet" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/fontawesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+	<script type="text/javascript" th:src="@{/js/script.js}"></script>
+</head>
+
+<body>
+	<nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary">
+		<div class="container-fluid">
+			<a class="navbar-brand" th:href="@{/}">Productos</a>
+			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+				<div class="navbar-nav">
+					<a class="nav-link btn btn-large text-dark" th:href="@{/add}">Agregar producto</a>
+				</div>
+			</div>
+		</div>
+	</nav>
+
+	<div class="container">
+		<div class="mt-4 text-center text-info">
+			<h2 class="fw-bold">Productos</h2>
+		</div>
+
+		<div>
+			<form class="d-flex input-group w-auto" th:action="@{/}">
+				<input type="text" class="form-control rounded search" name="palabraClave" id="palabraClave"
+					th:value="${palabraClave}" placeholder="Search" />
+				<div class="actions d-grid gap-2 d-md-block">
+					<button type="submit" class="btn btn-primary actions"><img
+							th:src="@{/img/search-icon.png}" /></button>
+					<button type="button" class="btn btn-warning actions" value="Limpiar" onclick="limpiarInput();"><img
+							th:src="@{/img/clean-icon.png}" /></button>
+				</div>
+			</form>
+		</div>
+
+		<div class="table-wrapper-scroll-y my-custom-scrollbar mt-3">
+			<table class="table align-middle mb-0 bg-white">
+				<thead class="bg-dark text-white">
+					<tr class="text-center fs-4">
+						<th>ID</th>
+						<th>Nombre</th>
+						<th>Marca</th>
+						<th>Hecho en</th>
+						<th>Precio</th>
+						<th>Acciones</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="text-center fs-5" th:each="producto : ${listarProductos}">
+						<td th:text="${producto.id}"></td>
+						<td th:text="${producto.nombre}"></td>
+						<td th:text="${producto.marca}"></td>
+						<td th:text="${producto.origen}"></td>
+						<td th:text="${producto.precio}"></td>
+						<td>
+							<a class="btn btn-info btn-rounded" th:href="@{'/edit/'+${producto.id}}">
+								<img th:src="@{/img/edit-icon.png}" />
+							</a>
+							<a class="btn btn-danger btn-rounded" th:href="@{'/delete/'+${producto.id}}"><img
+									th:src="@{/img/delte-icon.png}" /></a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+	</div>
+
+</body>
+
+</html>

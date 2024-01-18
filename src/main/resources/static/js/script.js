@@ -1,0 +1,5 @@
+
+
+function limpiarInput(){
+	window.location='/';
+}

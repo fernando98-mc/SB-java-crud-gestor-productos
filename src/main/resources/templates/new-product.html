@@ -1,0 +1,64 @@
+<html xmlns:th="http://www.thymeleaf.com.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Registrar producto</title>
+	<!-- Styles by MDB Botstrap -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.css" rel="stylesheet" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.rtl.min.css"
+		integrity="sha512-I0CDaUWddnRBVa8tvqNXcCj8xGsAOUip27HlVyW0BzimpdZozyEnaw6bHuz/eU8/tvYo1G+Av92Jg/s5cUXOUA=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+</head>
+
+<body>
+	<nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary">
+		<div class="container-fluid">
+			<a class="navbar-brand" th:href="@{/}">Productos</a>
+			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+				<div class="navbar-nav">
+					<a class="nav-link btn btn-large text-dark" th:href="@{/add}">Agregar producto</a>
+				</div>
+			</div>
+		</div>
+	</nav>
+
+	<div class="container">
+		<h1 class="display-6 text-center mt-5 ">Agregar nuevo producto</h1>
+		<div class="formulario mt-4">
+			<form th:action="@{/save}" th:object="${producto}" method="post">
+
+				<div class="input-group input-group-lg fs-5 fw-bold p-3">
+					<span class="p-2">Nombre </span>
+					<input type="text" class="form-control" name="nombre" th:field="*{nombre}" required />
+				</div>
+
+				<div class="input-group input-group-lg fs-5 fw-bold p-3">
+					<span class="p-2">Marca </span>
+					<input type="text" class="form-control" name="marca" th:field="*{marca}" required />
+				</div>
+
+				<div class="input-group input-group-lg fs-5 fw-bold p-3">
+					<span class="p-2">Hecho en </span>
+					<input type="text" class="form-control" name="origen" th:field="*{origen}" required />
+				</div>
+
+				<div class="input-group input-group-lg fs-5 fw-bold p-3">
+					<span class="p-2">Precio </span>
+					<input type="number" class="form-control" name="precio" th:field="*{precio}" required />
+				</div>
+
+
+				<div class="mt-5 m-1 p-4 d-grid gap-2 col-6 mx-auto">
+					<button class="btn btn-success btn-lg btn-rounded fs-5">Guardar</button>
+				</div>
+
+			</form>
+
+		</div>
+
+	</div>
+
+</body>
+
+</html>
